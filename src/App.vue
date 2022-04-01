@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import comments from '@/composables/comments.js'
 import current_user from "@/composables/current_user.js";
+import Comment from "./components/Comment.vue";
 
 const data = ref([])
 const new_comment = ref('')
@@ -36,17 +37,15 @@ const addComment = () => {
 
 
 <template>
-    <!-- Pull dynamic content from the data.json file -->
-  <div >
-    <div v-for="comment in data" :key="comment.id">
-      <p class="mb-3">{{ comment.content }}</p>
-      <template v-if="comment.replies">
-        <div v-for="reply in comment.replies" :key="reply.id" class="ml-4 mb-3">
-          {{ reply.content }}
-        </div>
-      </template>
-    </div>
-  </div>
+  <!-- Pull dynamic content from the data.json file -->
+  <template v-for="comment in data" :key="comment.id">
+    <Comment :comment="comment" />
+    <template v-if="comment.replies">
+      <div v-for="reply in comment.replies" :key="reply.id" class="ml-4 mb-3">
+        {{ reply.content }}
+      </div>
+    </template>
+  </template>
 
   <div>
     <textarea v-model="new_comment" placeholder="Add a comment..." class="border-2"></textarea>
