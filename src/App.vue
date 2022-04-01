@@ -1,13 +1,13 @@
-<script setup>import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue';
+import comments from '@/composables/data.js'
 
 const data = ref(null)
 // check if we have comments in localstorage
 if(!localStorage.getItem('comments')) {
-  const comments = {boy: 'kofi', girl: 'ama'} 
   localStorage.setItem('comments', JSON.stringify(comments))
 } else {
   data.value = JSON.parse(localStorage.getItem('comments'))
-
 }
 
 </script>
@@ -16,7 +16,7 @@ if(!localStorage.getItem('comments')) {
 <template>
   <div class="text-Moderate-blue ">
     <!-- Pull dynamic content from the data.json file -->
-    {{data.girl}}
+    {{data}}
   </div>
 
   <footer class="mt-10 mb-2 text-center text-xs text-Dark-gray">
