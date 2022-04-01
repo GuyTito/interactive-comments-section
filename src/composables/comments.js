@@ -6,8 +6,8 @@ const comments = [
     score: 12,
     user: {
       image: {
-        png: "./images/avatars/image-amyrobson.png",
-        webp: "./images/avatars/image-amyrobson.webp"
+        png: "assets/avatars/image-amyrobson.png",
+        webp: "assets/avatars/image-amyrobson.webp"
       },
       username: "amyrobson"
     },
@@ -20,8 +20,8 @@ const comments = [
     score: 5,
     user: {
       image: {
-        png: "./images/avatars/image-maxblagun.png",
-        webp: "./images/avatars/image-maxblagun.webp"
+        png: "assets/avatars/image-maxblagun.png",
+        webp: "assets/avatars/image-maxblagun.webp"
       },
       username: "maxblagun"
     },
@@ -34,8 +34,8 @@ const comments = [
         replyingTo: "maxblagun",
         user: {
           image: {
-            png: "./images/avatars/image-ramsesmiron.png",
-            webp: "./images/avatars/image-ramsesmiron.webp"
+            png: "assets/avatars/image-ramsesmiron.png",
+            webp: "assets/avatars/image-ramsesmiron.webp"
           },
           username: "ramsesmiron"
         }
@@ -48,8 +48,8 @@ const comments = [
         replyingTo: "ramsesmiron",
         user: {
           image: {
-            png: "./images/avatars/image-juliusomo.png",
-            webp: "./images/avatars/image-juliusomo.webp"
+            png: "assets/avatars/image-juliusomo.png",
+            webp: "assets/avatars/image-juliusomo.webp"
           },
           username: "juliusomo"
         }
