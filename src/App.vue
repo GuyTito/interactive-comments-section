@@ -56,10 +56,10 @@ const addComment = () => {
     </div>
   </div>
 
-  <!-- <footer class="mt-10 mb-2 text-center text-xs text-Dark-gray">
+  <footer class="mt-10 mb-2 text-center text-xs text-Grayish-Blue ">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" class="underline hover:font-bold">Frontend Mentor</a>. 
       Coded by <a href="https://github.com/GuyTito/interactive-comments-section"  target="_blank" class="underline hover:font-bold">GuyTito</a>.
-  </footer> -->
+  </footer>
 </template>
 
 
