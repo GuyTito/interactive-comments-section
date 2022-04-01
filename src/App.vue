@@ -40,11 +40,11 @@ const addComment = () => {
   <!-- Pull dynamic content from the data.json file -->
   <template v-for="comment in data" :key="comment.id">
     <Comment :comment="comment" />
-    <template v-if="comment.replies">
-      <div v-for="reply in comment.replies" :key="reply.id" class="ml-4 mb-3">
-        {{ reply.content }}
-      </div>
-    </template>
+    <div v-if="comment.replies" class="border-l-2 ml-4">
+      <template v-for="reply in comment.replies" :key="reply.id">
+        <Comment :comment="reply" />
+      </template>
+    </div>
   </template>
 
   <div>
