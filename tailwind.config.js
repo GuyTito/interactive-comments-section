@@ -15,7 +15,7 @@ module.exports = {
         "Dark-blue": "hsl(212, 24%, 26%)",
         "Grayish-Blue": "hsl(211, 10%, 45%)",
         "Light-gray": "hsl(223, 19%, 93%)",
-        "Very-light-gray": "hsl(228, 33%, 97)",
+        "Very-light-gray": "hsl(228, 33%, 97%)",
       },
       fontFamily: {
         sans : ["'Rubik'", ...defaultTheme.fontFamily.sans],
