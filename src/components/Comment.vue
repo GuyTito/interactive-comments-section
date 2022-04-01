@@ -1,16 +1,27 @@
 <script setup>
+import { computed } from "@vue/reactivity";
 import ReplyIcon from "./icons/ReplyIcon.vue";
+import current_user from '@/composables/current_user.js'
+import RDEButton from "./RDEButton.vue";
+import DeleteIcon from "./icons/DeleteIcon.vue";
+import EditIcon from "./icons/EditIcon.vue";
+
 const props = defineProps(['comment', ])
+
+const ownership = computed(()=>{
+  return props.comment.user.username == current_user.username
+})
 
 </script>
 
 
 <template>
   <div class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
-    <div class="space-x-3">
+    <div class="space-x-2">
       <img :src="`/src/${comment.user.image.png}`" alt="avatar" class="h-8 w-8 inline">
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
-      <span> {{comment.createdAt}} </span>
+      <span v-if="ownership" class="bg-Moderate-blue py-[2px] px-1 rounded-sm text-white text-xs">you</span>
+      <span class="pl-2"> {{comment.createdAt}} </span>
     </div>
 
     <p class="text-[16px] ">
@@ -24,10 +35,28 @@ const props = defineProps(['comment', ])
         <button class="text-Light-grayish-blue">-</button>
       </div>
 
-      <button class="font-bold flex items-center space-x-2">
-        <i> <ReplyIcon /> </i>
-        <span>Reply</span>
-      </button>
+      <div class="space-x-4 flex">
+        <RDEButton v-if="!ownership">
+          <template #icon>
+            <ReplyIcon />
+          </template>
+          Reply
+        </RDEButton>
+  
+        <RDEButton v-if="ownership" class="text-Soft-Red">
+          <template #icon>
+            <DeleteIcon />
+          </template>
+          Delete
+        </RDEButton>
+  
+        <RDEButton v-if="ownership">
+          <template #icon>
+            <EditIcon />
+          </template>
+          Edit
+        </RDEButton>
+      </div>
     </div>
   </div>
 </template>
