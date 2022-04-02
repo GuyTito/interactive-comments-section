@@ -19,6 +19,36 @@ const toggleForm = () => {
   show_form.value = !show_form.value
 }
 
+const data = ref([])
+
+const addReply = (new_reply)=> {
+  if (new_reply) {
+    const current_reply = {
+      id: Math.floor(Date.now() * Math.random()),
+      content: new_reply,
+      user: current_user,
+      createdAt: Date.now(),
+      score: 0,
+      replyingTo: props.comment.user.username,
+    }
+
+      
+    data.value = JSON.parse(localStorage.getItem('comments'))
+
+    data.value.forEach(comment => {
+      if (comment.id == props.comment.id) {
+        props.comment.replies.push(current_reply)
+        comment.replies.push(current_reply)
+      }
+
+      // detect a reply
+    });
+
+    localStorage.setItem('comments', JSON.stringify(data.value))
+    show_form.value = false
+  }
+}
+
 </script>
 
 
@@ -32,7 +62,7 @@ const toggleForm = () => {
     </div>
 
     <p class="text-[16px] ">
-      {{ comment.content }}
+      <span v-if="comment.replyingTo" class="text-Moderate-blue font-bold">@{{comment.replyingTo}}</span> {{ comment.content }}
     </p>
 
     <div class="text-Moderate-blue flex justify-between">
@@ -67,7 +97,7 @@ const toggleForm = () => {
     </div>
   </div>
 
-  <FormField v-if="show_form" :place_holder="'Reply...'">
+  <FormField v-if="show_form" @send="addReply" :place_holder="'Reply...'">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
