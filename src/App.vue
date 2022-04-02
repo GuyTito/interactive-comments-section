@@ -7,7 +7,6 @@ import Avatar from './components/Avatar.vue';
 import FormField from './components/FormField.vue';
 
 const data = ref([])
-const new_comment = ref('')
 
 // check for comments in localstorage and retrieve
 if(!localStorage.getItem('comments')) {
@@ -16,12 +15,12 @@ if(!localStorage.getItem('comments')) {
   data.value = JSON.parse(localStorage.getItem('comments'))
 }
 
-const addComment = () => {
+const addComment = (new_comment) => {
   // write to check a reply or comment and code accordingly
-  if (new_comment.value) {
+  if (new_comment) {
     const current_comment = {
       id: Math.floor(Date.now() * Math.random()),
-      content: new_comment.value,
+      content: new_comment,
       user: current_user,
       createdAt: Date.now(),
       score: 0,
@@ -30,12 +29,8 @@ const addComment = () => {
 
     data.value.push(current_comment)
     localStorage.setItem('comments', JSON.stringify(data.value))
-
-    new_comment.value = ''
   }
 }
-
-
 
 </script>
 
@@ -51,7 +46,7 @@ const addComment = () => {
     </div>
   </template>
 
-  <FormField>
+  <FormField @send="addComment" :place_holder="'Add a comment...'">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
