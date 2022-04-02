@@ -37,7 +37,7 @@ const ownership = computed(()=>{
       </div>
 
       <div class="space-x-4 flex">
-        <RDEButton v-if="!ownership">
+        <RDEButton v-if="!ownership" @click="$emit('showForm')">
           <template #icon>
             <ReplyIcon />
           </template>

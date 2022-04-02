@@ -4,6 +4,7 @@ import comments from '@/composables/comments.js'
 import current_user from "@/composables/current_user.js";
 import Comment from "./components/Comment.vue";
 import Avatar from './components/Avatar.vue';
+import FormField from './components/FormField.vue';
 
 const data = ref([])
 const new_comment = ref('')
@@ -34,13 +35,19 @@ const addComment = () => {
   }
 }
 
+const show_form = ref(false)
+const toggleForm = ()=>{
+  show_form.value = !show_form.value
+}
+
 </script>
 
 
 <template>
   <!-- Pull dynamic content from the data.json file -->
   <template v-for="comment in data" :key="comment.id">
-    <Comment :comment="comment" />
+    <Comment :comment="comment" @show-form="toggleForm" />
+    <FormField v-if="show_form"/>
     <div v-if="comment.replies" class="border-l-2 ml-4">
       <template v-for="reply in comment.replies" :key="reply.id">
         <Comment :comment="reply" />
