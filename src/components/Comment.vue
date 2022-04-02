@@ -8,7 +8,7 @@ import EditIcon from "./icons/EditIcon.vue";
 import Avatar from "./Avatar.vue";
 import FormField from "./FormField.vue";
 
-const props = defineProps(['comment', ])
+const props = defineProps(['comment', 'parent', ])
 
 const ownership = computed(()=>{
   return props.comment.user.username == current_user.username
@@ -32,19 +32,27 @@ const addReply = (new_reply)=> {
       replyingTo: props.comment.user.username,
     }
 
-      
+
     data.value = JSON.parse(localStorage.getItem('comments'))
-
-    data.value.forEach(comment => {
-      if (comment.id == props.comment.id) {
-        props.comment.replies.push(current_reply)
-        comment.replies.push(current_reply)
-      }
-
-      // detect a reply
-    });
-
+    // reply to the right reply
+    if (props.comment.hasOwnProperty('replyingTo')) {
+      data.value.forEach(comment => {
+        if (comment.id == props.parent.id) {
+          props.parent.replies.push(current_reply)
+          comment.replies.push(current_reply)
+        }
+      });
+    }else{
+      data.value.forEach(comment => {
+        // reply to the right comment
+        if (comment.id == props.comment.id) {
+          props.comment.replies.push(current_reply)
+          comment.replies.push(current_reply)
+        }
+      });
+    }
     localStorage.setItem('comments', JSON.stringify(data.value))
+
     show_form.value = false
   }
 }

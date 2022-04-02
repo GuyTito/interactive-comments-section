@@ -16,7 +16,6 @@ if(!localStorage.getItem('comments')) {
 }
 
 const addComment = (new_comment) => {
-  // write to check a reply or comment and code accordingly
   if (new_comment) {
     const current_comment = {
       id: Math.floor(Date.now() * Math.random()),
@@ -41,7 +40,7 @@ const addComment = (new_comment) => {
     <Comment :comment="comment" />
     <div v-if="comment.replies" class="border-l-2 ml-4">
       <template v-for="reply in comment.replies" :key="reply.id">
-        <Comment :comment="reply" />
+        <Comment :comment="reply" :parent="comment" />
       </template>
     </div>
   </template>
