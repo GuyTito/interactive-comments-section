@@ -5,6 +5,7 @@ import current_user from '@/composables/current_user.js'
 import RDEButton from "./RDEButton.vue";
 import DeleteIcon from "./icons/DeleteIcon.vue";
 import EditIcon from "./icons/EditIcon.vue";
+import Avatar from "./Avatar.vue";
 
 const props = defineProps(['comment', ])
 
@@ -18,7 +19,7 @@ const ownership = computed(()=>{
 <template>
   <div class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
     <div class="space-x-2">
-      <img :src="`/src/${comment.user.image.png}`" alt="avatar" class="h-8 w-8 inline">
+      <Avatar :avatar_path="comment.user.image.png" />
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
       <span v-if="ownership" class="bg-Moderate-blue py-[2px] px-1 rounded-sm text-white text-xs">you</span>
       <span class="pl-2"> {{comment.createdAt}} </span>
