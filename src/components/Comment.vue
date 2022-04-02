@@ -105,7 +105,7 @@ const addReply = (new_reply)=> {
     </div>
   </div>
 
-  <FormField v-if="show_form" @send="addReply" :place_holder="'Reply...'">
+  <FormField v-if="show_form" @send="addReply" :place_holder="'Reply...'" :to="comment.user.username">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
