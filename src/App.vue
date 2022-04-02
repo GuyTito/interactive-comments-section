@@ -51,14 +51,12 @@ const addComment = () => {
     </div>
   </template>
 
-  <div class="bg-white rounded-lg mx-4 p-4 mt-8 space-y-4 text-Grayish-Blue">
-    <textarea v-model="new_comment" placeholder="Add a comment..." class="border-2 rounded-lg h-28 w-full p-4"></textarea>
-    
-    <div class="flex justify-between items-center">
+  <FormField>
+    <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
-      <button @click="addComment" class="bg-Moderate-blue text-white py-2 px-6 rounded-lg">SEND</button>
-    </div>
-  </div>
+    </template>
+    Send
+  </FormField>
 
   <footer class="mt-10 mb-2 text-center text-xs text-Grayish-Blue ">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" class="underline hover:font-bold">Frontend Mentor</a>. 

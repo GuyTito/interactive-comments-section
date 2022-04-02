@@ -67,7 +67,12 @@ const toggleForm = () => {
     </div>
   </div>
 
-  <FormField v-if="show_form"/>
+  <FormField v-if="show_form">
+    <template #avatar>
+      <Avatar :avatar_path="current_user.image.png" />
+    </template>
+    Reply
+  </FormField>
 </template>
 
 
