@@ -1,17 +1,23 @@
 <script setup>
-import { computed } from "@vue/reactivity";
+import { computed, ref } from "@vue/reactivity";
 import ReplyIcon from "./icons/ReplyIcon.vue";
 import current_user from '@/composables/current_user.js'
 import RDEButton from "./RDEButton.vue";
 import DeleteIcon from "./icons/DeleteIcon.vue";
 import EditIcon from "./icons/EditIcon.vue";
 import Avatar from "./Avatar.vue";
+import FormField from "./FormField.vue";
 
 const props = defineProps(['comment', ])
 
 const ownership = computed(()=>{
   return props.comment.user.username == current_user.username
 })
+
+const show_form = ref(false)
+const toggleForm = () => {
+  show_form.value = !show_form.value
+}
 
 </script>
 
@@ -37,7 +43,7 @@ const ownership = computed(()=>{
       </div>
 
       <div class="space-x-4 flex">
-        <RDEButton v-if="!ownership" @click="$emit('showForm')">
+        <RDEButton v-if="!ownership" @click="toggleForm">
           <template #icon>
             <ReplyIcon />
           </template>
@@ -60,6 +66,8 @@ const ownership = computed(()=>{
       </div>
     </div>
   </div>
+
+  <FormField v-if="show_form"/>
 </template>
 
 

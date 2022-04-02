@@ -35,10 +35,7 @@ const addComment = () => {
   }
 }
 
-const show_form = ref(false)
-const toggleForm = ()=>{
-  show_form.value = !show_form.value
-}
+
 
 </script>
 
@@ -46,8 +43,7 @@ const toggleForm = ()=>{
 <template>
   <!-- Pull dynamic content from the data.json file -->
   <template v-for="comment in data" :key="comment.id">
-    <Comment :comment="comment" @show-form="toggleForm" />
-    <FormField v-if="show_form"/>
+    <Comment :comment="comment" />
     <div v-if="comment.replies" class="border-l-2 ml-4">
       <template v-for="reply in comment.replies" :key="reply.id">
         <Comment :comment="reply" />
