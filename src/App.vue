@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import comments from '@/composables/comments.js'
 import current_user from "@/composables/current_user.js";
 import Comment from "./components/Comment.vue";
+import Avatar from './components/Avatar.vue';
 
 const data = ref([])
 const new_comment = ref('')
@@ -51,7 +52,7 @@ const addComment = () => {
     <textarea v-model="new_comment" placeholder="Add a comment..." class="border-2 rounded-lg h-28 w-full p-4"></textarea>
     
     <div class="flex justify-between items-center">
-      <img :src="`/src/${current_user.image.png}`" alt="avatar" class="h-8 w-8 inline">
+      <Avatar :avatar_path="current_user.image.png" />
       <button @click="addComment" class="bg-Moderate-blue text-white py-2 px-6 rounded-lg">SEND</button>
     </div>
   </div>
