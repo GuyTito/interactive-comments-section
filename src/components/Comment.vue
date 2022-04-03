@@ -40,7 +40,7 @@ const addReply = (new_content)=> {
           props.parent.replies.push(new_reply)
           comment.replies.push(new_reply)
         }
-      });
+      })
     }else{
       data.value.forEach(comment => {
         // reply to the right comment
@@ -48,7 +48,7 @@ const addReply = (new_content)=> {
           props.comment.replies.push(new_reply)
           comment.replies.push(new_reply)
         }
-      });
+      })
     }
     localStorage.setItem('comments', JSON.stringify(data.value))
 
@@ -58,6 +58,7 @@ const addReply = (new_content)=> {
 
 const show_modal = ref(false)
 const deleteComment = () => {
+  // delete the right reply
   if (props.comment.hasOwnProperty('replyingTo')) {
     data.value.forEach(comment => {
       if (comment.id == props.parent.id) {
@@ -66,7 +67,12 @@ const deleteComment = () => {
       }
     })
   }else{
-
+    data.value.forEach(comment => {
+      // delete the right comment
+      if (comment.id == props.comment.id) {
+        data.value = data.value.filter(comment => comment.id != props.comment.id)
+      }
+    })
   }
 }
 
