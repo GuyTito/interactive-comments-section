@@ -17,7 +17,7 @@ const submit = ()=> {
     
     <div class="flex justify-between items-center">
       <slot name="avatar"></slot>
-      <button @click="submit" class="bg-Moderate-blue text-white py-2 px-6 rounded-lg">
+      <button @click="submit" class="btn bg-Moderate-blue">
         <slot></slot>
       </button>
     </div>
