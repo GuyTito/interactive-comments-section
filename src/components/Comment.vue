@@ -20,7 +20,6 @@ const toggleForm = () => {
 }
 
 const data = ref([])
-
 const addReply = (new_reply)=> {
   if (new_reply) {
     const current_reply = {
@@ -57,6 +56,8 @@ const addReply = (new_reply)=> {
   }
 }
 
+const show_modal = ref(false)
+
 </script>
 
 
@@ -88,7 +89,7 @@ const addReply = (new_reply)=> {
           Reply
         </RDEButton>
   
-        <RDEButton v-if="ownership" class="text-Soft-Red">
+        <RDEButton v-if="ownership" @click="show_modal = true" class="text-Soft-Red">
           <template #icon>
             <DeleteIcon />
           </template>
@@ -111,6 +112,20 @@ const addReply = (new_reply)=> {
     </template>
     Reply
   </FormField>
+
+  <Teleport to="body" v-if="show_modal">
+    <div class="fixed inset-0 bg-black/40 grid place-content-center">
+      <div class="bg-white rounded-lg p-7 mx-12 text-Grayish-Blue space-y-5">
+        <h3 class="font-bold">Delete comment</h3>
+        <p>Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
+        <div class="flex justify-between">
+          <button @click="show_modal = false" class="btn bg-Grayish-Blue "> NO, CANCEL</button>
+          <button @click="deleteComment" class="btn bg-Soft-Red"> YES, DELETE</button>
+        </div>
+      </div>
+    </div>
+  </Teleport>
+
 </template>
 
 
