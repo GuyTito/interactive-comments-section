@@ -20,33 +20,33 @@ const toggleForm = () => {
 }
 
 const data = ref([])
-const addReply = (new_reply)=> {
-  if (new_reply) {
-    const current_reply = {
+data.value = JSON.parse(localStorage.getItem('comments'))
+
+const addReply = (new_content)=> {
+  if (new_content) {
+    const new_reply = {
       id: Math.floor(Date.now() * Math.random()),
-      content: new_reply,
+      content: new_content,
       user: current_user,
       createdAt: Date.now(),
       score: 0,
       replyingTo: props.comment.user.username,
     }
 
-
-    data.value = JSON.parse(localStorage.getItem('comments'))
     // reply to the right reply
     if (props.comment.hasOwnProperty('replyingTo')) {
       data.value.forEach(comment => {
         if (comment.id == props.parent.id) {
-          props.parent.replies.push(current_reply)
-          comment.replies.push(current_reply)
+          props.parent.replies.push(new_reply)
+          comment.replies.push(new_reply)
         }
       });
     }else{
       data.value.forEach(comment => {
         // reply to the right comment
         if (comment.id == props.comment.id) {
-          props.comment.replies.push(current_reply)
-          comment.replies.push(current_reply)
+          props.comment.replies.push(new_reply)
+          comment.replies.push(new_reply)
         }
       });
     }
@@ -57,6 +57,18 @@ const addReply = (new_reply)=> {
 }
 
 const show_modal = ref(false)
+const deleteComment = () => {
+  if (props.comment.hasOwnProperty('replyingTo')) {
+    data.value.forEach(comment => {
+      if (comment.id == props.parent.id) {
+        props.parent.replies = props.parent.replies.filter(reply => reply.id != props.comment.id)
+        comment.replies = props.parent.replies
+      }
+    })
+  }else{
+
+  }
+}
 
 </script>
 
