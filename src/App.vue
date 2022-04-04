@@ -54,7 +54,7 @@ const deleteComment = (id) => {
     </div>
   </template>
 
-  <FormField @send="addComment" :place_holder="'Add a comment...'">
+  <FormField @action="addComment" :place_holder="'Add a comment...'">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
