@@ -57,6 +57,8 @@ const addReply = (new_content)=> {
 }
 
 const show_modal = ref(false)
+// defined emit here to avoid "Extraneous..." warning
+const emit = defineEmits(['delete'])
 const deleteComment = () => {
   // delete the right reply
   if (props.comment.hasOwnProperty('replyingTo')) {
@@ -70,7 +72,8 @@ const deleteComment = () => {
     data.value.forEach(comment => {
       // delete the right comment
       if (comment.id == props.comment.id) {
-        data.value = data.value.filter(comment => comment.id != props.comment.id)
+        // had to emit this function because a component cannot delete itself
+        emit('delete', props.comment.id)
       }
     })
   }

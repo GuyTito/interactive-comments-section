@@ -31,13 +31,21 @@ const addComment = (new_comment) => {
   }
 }
 
+const deleteComment = (id) => {
+  // data.value = data.value.filter(comment => comment.id != id)
+  const indexOfObject = data.value.findIndex(comment => {
+    return comment.id === id;
+  })
+  data.value.splice(indexOfObject, 1)
+}
+
 </script>
 
 
 <template>
   <!-- Pull dynamic content from the data.json file -->
   <template v-for="comment in data" :key="comment.id">
-    <Comment :comment="comment" />
+    <Comment :comment="comment" @delete="deleteComment" />
     <div v-if="comment.replies" class="border-l-2 ml-4">
       <template v-for="reply in comment.replies" :key="reply.id">
         <Comment :comment="reply" :parent="comment" />
