@@ -37,6 +37,7 @@ const deleteComment = (id) => {
     return comment.id === id;
   })
   data.value.splice(indexOfObject, 1)
+  localStorage.setItem('comments', JSON.stringify(data.value))
 }
 
 </script>

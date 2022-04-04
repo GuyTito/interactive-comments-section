@@ -68,6 +68,7 @@ const deleteComment = () => {
         comment.replies = props.parent.replies
       }
     })
+    localStorage.setItem('comments', JSON.stringify(data.value))
   }else{
     data.value.forEach(comment => {
       // delete the right comment
