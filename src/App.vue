@@ -16,12 +16,13 @@ if(!localStorage.getItem('comments')) {
 }
 
 const addComment = (new_comment) => {
+  const date = new Date()
   if (new_comment) {
     const current_comment = {
       id: Math.floor(Date.now() * Math.random()),
       content: new_comment,
       user: current_user,
-      createdAt: Date.now(),
+      createdAt: [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()],
       score: 0,
       replies: [],
     }
