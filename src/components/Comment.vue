@@ -7,6 +7,7 @@ import DeleteIcon from "./icons/DeleteIcon.vue";
 import EditIcon from "./icons/EditIcon.vue";
 import Avatar from "./Avatar.vue";
 import FormField from "./FormField.vue";
+import moment from 'moment'
 
 const props = defineProps(['comment', 'parent', ])
 
@@ -107,7 +108,7 @@ const updateComment = (d) => {
       <Avatar :avatar_path="comment.user.image.png" />
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
       <span v-if="ownership" class="bg-Moderate-blue py-[2px] px-1 rounded-sm text-white text-xs">you</span>
-      <span class="pl-2"> {{comment.createdAt}} </span>
+      <span class="pl-2"> {{ moment(comment.createdAt).fromNow() }} </span>
     </div>
 
     <p class="text-[16px] ">
