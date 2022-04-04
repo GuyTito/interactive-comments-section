@@ -19,6 +19,14 @@ const toggleForm = () => {
   show_form.value = !show_form.value
 }
 
+const purpose = computed(() => {
+  if (props.comment.hasOwnProperty('replyingTo')) {
+    return `Updating reply to @${props.comment.replyingTo}`
+  }else{
+    return 'Updating comment...'
+  }
+})
+
 const data = ref([])
 data.value = JSON.parse(localStorage.getItem('comments'))
 
@@ -58,7 +66,7 @@ const addReply = (new_content)=> {
 
 const show_modal = ref(false)
 // defined emit here to avoid "Extraneous..." warning
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['delete', ])
 const deleteComment = () => {
   // delete the right reply
   if (props.comment.hasOwnProperty('replyingTo')) {
@@ -80,10 +88,20 @@ const deleteComment = () => {
   }
 }
 
+const show_edit = ref(false)
+const toggleEdit = () => {
+  show_edit.value = !show_edit.value
+}
+
+const updateComment = (d) => {
+  alert(d)
+}
+
 </script>
 
 
 <template>
+  <!-- <div v-if="!show_edit" class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue"> -->
   <div class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
     <div class="space-x-2">
       <Avatar :avatar_path="comment.user.image.png" />
@@ -118,7 +136,7 @@ const deleteComment = () => {
           Delete
         </RDEButton>
   
-        <RDEButton v-if="ownership">
+        <RDEButton v-if="ownership" @click="toggleEdit">
           <template #icon>
             <EditIcon />
           </template>
@@ -128,13 +146,23 @@ const deleteComment = () => {
     </div>
   </div>
 
-  <FormField v-if="show_form" @send="addReply" :place_holder="'Reply...'" :to="comment.user.username">
+  <!-- Reply form -->
+  <FormField v-if="show_form" @action="addReply" :place_holder="'Reply...'" :purpose="`Replying to @${comment.user.username}`">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
     Reply
   </FormField>
 
+  <!-- Edit form -->
+  <FormField v-if="show_edit" @action="updateComment" :purpose="purpose" :content="'dfdfd'">
+    <template #avatar>
+      <Avatar :avatar_path="current_user.image.png" />
+    </template>
+    Update
+  </FormField>
+
+  <!-- Delete modal -->
   <Teleport to="body" v-if="show_modal">
     <div class="fixed inset-0 bg-black/40 grid place-content-center">
       <div class="bg-white rounded-lg p-7 mx-12 text-Grayish-Blue space-y-5">
