@@ -8,8 +8,8 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Expected behaviour](#expected-behaviour)
-  <!-- - [Screenshot](#screenshot)
-  - [Links](#links) -->
+  - [Screenshot](#screenshot)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Author](#author)
@@ -44,19 +44,19 @@ Users should be able to:
 - Adding a new comment or reply uses the `currentUser` object from within the `data.json` file.
 - You can only edit or delete your own comments and replies.
 
-<!-- ### Screenshot
+### Screenshot
 
 <details>
 <summary>Screenshot</summary>
 
 ![Screenshot of project](./screenshot.png)
 
-</details> -->
+</details>
 
-<!-- ### Links
+### Links
 
-- [Solution]()
-- [Live Site]() -->
+- [Solution](https://www.frontendmentor.io/solutions/an-interactive-comments-section-with-vue-3-and-composition-api-HkiVslcmq)
+- [Live Site](https://interactive-comments-fm.netlify.app/)
 
 ## My process
 
