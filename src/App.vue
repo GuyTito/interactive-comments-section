@@ -10,6 +10,7 @@ const data = ref([])
 
 // check for comments in localstorage and retrieve
 if(!localStorage.getItem('comments')) {
+  data.value = comments
   localStorage.setItem('comments', JSON.stringify(comments))
 } else {
   data.value = JSON.parse(localStorage.getItem('comments'))
