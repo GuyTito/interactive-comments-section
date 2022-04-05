@@ -1,8 +1,8 @@
 const current_user = 
 {
   image: {
-    png: "assets/avatars/image-juliusomo.png",
-    webp: "assets/avatars/image-juliusomo.webp"
+    png: "avatars/image-juliusomo.png",
+    webp: "avatars/image-juliusomo.webp"
   },
   username: "juliusomo"
 }
