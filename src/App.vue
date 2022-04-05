@@ -23,7 +23,7 @@ const addComment = (new_comment) => {
       id: Math.floor(Date.now() * Math.random()),
       content: new_comment,
       user: current_user,
-      createdAt: [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()],
+      createdAt: [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()],
       score: 0,
       replies: [],
     }
