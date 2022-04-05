@@ -118,6 +118,11 @@ const updateComment = (content) => {
   show_edit.value = false
 }
 
+// to update time without refresh
+const created_at = ref(moment(props.comment.createdAt).fromNow())
+const updateTime = () => created_at.value = moment(props.comment.createdAt).fromNow()
+setInterval(updateTime, 1000)
+
 </script>
 
 
@@ -127,7 +132,7 @@ const updateComment = (content) => {
       <Avatar :avatar_path="comment.user.image.png" />
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
       <span v-if="ownership" class="bg-Moderate-blue py-[2px] px-1 rounded-sm text-white text-xs">you</span>
-      <span class="pl-2"> {{ moment(comment.createdAt).fromNow() }} </span>
+      <span class="pl-2"> {{ created_at }} </span>
     </div>
 
     <p class="text-[16px] ">
