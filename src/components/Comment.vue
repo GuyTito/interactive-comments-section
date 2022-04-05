@@ -94,8 +94,27 @@ const toggleEdit = () => {
   show_edit.value = !show_edit.value
 }
 
-const updateComment = (d) => {
-  alert(d)
+const updateComment = (content) => {
+  if (props.comment.hasOwnProperty('replyingTo')) {
+    data.value.forEach(comment => {
+      if (comment.id == props.parent.id) {
+        comment.replies.forEach(reply =>{
+          if (reply.id == props.comment.id) {
+            reply.content = props.comment.content = content
+          }
+        })
+      }
+    })
+    localStorage.setItem('comments', JSON.stringify(data.value))
+  }else{
+    data.value.forEach(comment => {
+      if (comment.id == props.comment.id) {
+        comment.content = props.comment.content = content
+      }
+    })
+    localStorage.setItem('comments', JSON.stringify(data.value))
+  }
+
   show_edit.value = false
 }
 
