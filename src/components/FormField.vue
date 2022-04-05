@@ -5,29 +5,25 @@ const emit = defineEmits()
 const props = defineProps(['place_holder', 'purpose', 'content', ])
 
 const new_content = ref('')
-// const updated_content = computed({
-//   get: () => {
-//     if (props.content) {
-//       return new_content.value + props.content
-//     }else{
-//       return new_content.value
-//     }
-//   },
-//   set: (update) => {
-//     if (props.content) {
-//       return props.content = props.content + update
-//     }
-//   }
-// })
+if (props.content) new_content.value = props.content
+
 const submit = ()=> {
   emit('action', new_content.value)
   new_content.value = ''
 }
+
+const close = () => {
+  emit('close')
+}
+
 </script>
 
 <template>
   <div class="bg-white rounded-lg mx-4 p-4 mt-8 space-y-4 text-Grayish-Blue">
-    <span v-if="purpose">{{purpose}}</span>
+    <div v-if="purpose" class="flex justify-between items-center">
+      <span>{{purpose}}</span>
+      <button @click="close">X</button>
+    </div>
     <textarea v-model="new_content" :placeholder="place_holder" class="border-2 rounded-lg h-28 w-full p-4"></textarea>
     
     <div class="flex justify-between items-center">
