@@ -26,7 +26,7 @@ onMounted(()=> {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg mx-4 p-4 mt-8 space-y-4 text-Grayish-Blue">
+  <div class="card">
     <div v-if="purpose" class="flex justify-between items-center">
       <span>{{purpose}}</span>
       <button v-if="content" @click="close"> <CloseIcon /> </button>
