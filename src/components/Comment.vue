@@ -96,14 +96,14 @@ const toggleEdit = () => {
 
 const updateComment = (d) => {
   alert(d)
+  show_edit.value = false
 }
 
 </script>
 
 
 <template>
-  <!-- <div v-if="!show_edit" class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue"> -->
-  <div class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
+  <div v-if="!show_edit" class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
     <div class="space-x-2">
       <Avatar :avatar_path="comment.user.image.png" />
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
@@ -156,7 +156,7 @@ const updateComment = (d) => {
   </FormField>
 
   <!-- Edit form -->
-  <FormField v-if="show_edit" @action="updateComment" :purpose="purpose" :content="'dfdfd'">
+  <FormField v-if="show_edit" @action="updateComment" :purpose="purpose" :content="comment.content" @close="toggleEdit">
     <template #avatar>
       <Avatar :avatar_path="current_user.image.png" />
     </template>
