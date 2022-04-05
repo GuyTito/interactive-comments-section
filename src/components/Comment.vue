@@ -189,7 +189,7 @@ setInterval(updateTime, 1000)
 
   <!-- Delete modal -->
   <Teleport to="body" v-if="show_modal">
-    <div class="fixed inset-0 bg-black/40 grid place-content-center">
+    <div @click="show_modal = false" class="fixed inset-0 bg-black/40 grid place-content-center">
       <div class="bg-white rounded-lg p-7 mx-12 text-Grayish-Blue space-y-5">
         <h3 class="font-bold">Delete comment</h3>
         <p>Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
