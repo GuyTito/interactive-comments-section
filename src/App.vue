@@ -47,21 +47,23 @@ const deleteComment = (id) => {
 
 <template>
   <!-- Pull dynamic content from the data.json file -->
-  <template v-for="comment in data" :key="comment.id">
-    <Comment :comment="comment" @delete="deleteComment" />
-    <div v-if="comment.replies" class="border-l-2 ml-4">
-      <template v-for="reply in comment.replies" :key="reply.id">
-        <Comment :comment="reply" :parent="comment" />
-      </template>
-    </div>
-  </template>
-
-  <FormField @action="addComment" :place_holder="'Add a comment...'">
-    <template #avatar>
-      <Avatar :avatar_path="current_user.image.png" />
+  <div class="max-w-2xl mx-auto mt-10 md:mt-20 ">
+    <template v-for="comment in data" :key="comment.id">
+      <Comment :comment="comment" @delete="deleteComment" />
+      <div v-if="comment.replies" class="border-l-2 ml-4 md:ml-8 md:pl-8">
+        <template v-for="reply in comment.replies" :key="reply.id">
+          <Comment :comment="reply" :parent="comment" />
+        </template>
+      </div>
     </template>
-    Send
-  </FormField>
+  
+    <FormField @action="addComment" :place_holder="'Add a comment...'">
+      <template #avatar>
+        <Avatar :avatar_path="current_user.image.png" />
+      </template>
+      Send
+    </FormField>
+  </div>
 
   <footer class="mt-10 mb-2 text-center text-xs text-Grayish-Blue ">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" class="underline hover:font-bold">Frontend Mentor</a>. 

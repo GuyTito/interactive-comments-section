@@ -127,7 +127,7 @@ setInterval(updateTime, 1000)
 
 
 <template>
-  <div v-if="!show_edit" class="bg-white rounded-lg mx-4 p-4 mt-4 space-y-4 text-Grayish-Blue">
+  <div v-if="!show_edit" class="card">
     <div class="space-x-2">
       <Avatar :avatar_path="comment.user.image.png" />
       <span class="font-bold text-Dark-blue">{{comment.user.username}}</span>
@@ -190,12 +190,12 @@ setInterval(updateTime, 1000)
   <!-- Delete modal -->
   <Teleport to="body" v-if="show_modal">
     <div @click="show_modal = false" class="fixed inset-0 bg-black/40 grid place-content-center">
-      <div class="bg-white rounded-lg p-7 mx-12 text-Grayish-Blue space-y-5">
+      <div class="bg-white rounded-lg p-7 mx-4 text-Grayish-Blue space-y-5 md:max-w-sm mx-auto">
         <h3 class="font-bold">Delete comment</h3>
         <p>Are you sure you want to delete this comment? This will remove the comment and can't be undone.</p>
         <div class="flex justify-between">
-          <button @click="show_modal = false" class="btn bg-Grayish-Blue "> NO, CANCEL</button>
-          <button @click="deleteComment" class="btn bg-Soft-Red"> YES, DELETE</button>
+          <button @click="show_modal = false" class="btn bg-Grayish-Blue ">No, Cancel</button>
+          <button @click="deleteComment" class="btn bg-Soft-Red">Yes, Delete</button>
         </div>
       </div>
     </div>
