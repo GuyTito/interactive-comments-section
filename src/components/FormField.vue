@@ -1,11 +1,13 @@
 <script setup>
 import { onMounted, ref,  } from 'vue';
-const emit = defineEmits()
+import CloseIcon from './icons/CloseIcon.vue';
+
 const props = defineProps(['place_holder', 'purpose', 'content', ])
 
 const new_content = ref('')
 if (props.content) new_content.value = props.content
 
+const emit = defineEmits()
 const submit = ()=> {
   emit('action', new_content.value)
   new_content.value = ''
@@ -27,7 +29,7 @@ onMounted(()=> {
   <div class="bg-white rounded-lg mx-4 p-4 mt-8 space-y-4 text-Grayish-Blue">
     <div v-if="purpose" class="flex justify-between items-center">
       <span>{{purpose}}</span>
-      <button v-if="content" @click="close">X</button>
+      <button v-if="content" @click="close"> <CloseIcon /> </button>
     </div>
     <textarea v-model="new_content" ref="textbox" :placeholder="place_holder" class="border rounded-lg h-28 w-full p-4 focus:outline-Moderate-blue" ></textarea>
     
