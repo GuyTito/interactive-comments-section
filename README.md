@@ -66,6 +66,8 @@ Users should be able to:
 - Semantic HTML5 markup
 - Mobile-first workflow
 - Tailwindcss
+- JavaScript
+- LocalStorage API
 
 
 ## Author
